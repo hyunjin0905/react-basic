@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // let data = "안녕"
+    // document.body.innerHTML = `<div>${data}</div>`;
+    // data = "HelloWorld"
+    // document.body.innerHTML = `<div>${data}</div>`;
+
+    const state = {
+        _data: "안녕"
+    }
+
+    const render = () =>  (document.body.innerHTML = `<div>${state._data}</div>`);
+
+    // 특정 객체의 두번째 인자 속성을 추가 세번째 인자 옵션
+    Object.defineProperty(state, "text", {
+        get() {
+            console.log("get")
+            return state._data;
+        },
+        set(value) {
+            console.log("set")
+            state._data = value;
+            render();
+        }
+    });
+
+    render();
+    state.text ="hello"
+    console.log(state)
+    // 특정값에 의존해 자동으로 반응하는 것을 리액티브 하다 표현한다
+</script>
+
+</body>
+</html>
